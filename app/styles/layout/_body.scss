@@ -1,0 +1,53 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../abstracts/breakpoints';
+@use '../abstracts/mixins';
+
+///// ---------------------------- ///
+//// ----- App Body Layouts ----- ////
+/// ---------------------------- /////
+
+.body-content-grid {
+  display: grid;
+  grid-template-areas: 
+    "map"
+    "route-bar-chart"
+    "stop-bar-chart";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  @include mixins.mediaFrom(breakpoints.$breakXl) {
+    grid-template-areas: 
+      "map map"
+      "route-bar-chart stop-bar-chart";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+.mbta-map {
+  grid-area: map;
+}
+
+.mbta-route-bar-chart {
+  grid-area: route-bar-chart;
+}
+
+.mbta-stop-bar-chart {
+ grid-area: stop-bar-chart; 
+}
+
+// --- Generic Card Styling --- //
+.plot-card {
+  @include mixins.card;
+  @include mixins.card-shadow;
+}
+
+.map-card {
+  @include mixins.card-shadow;
+  border-radius: 5px;
+  margin: 1em 1em;
+  overflow: hidden;
+  max-height: 450px;
+}
