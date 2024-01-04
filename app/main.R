@@ -5,17 +5,18 @@
 box::use(
   sf[`st_crs<-`, st_read, st_transform],
   shiny[moduleServer, NS, reactive, tagList, tags],
-  shiny.semantic[semanticPage]
+  shiny.semantic[semanticPage],
+  utils[read.csv]
 )
 
 # -------------------------------------------------------------------------
 # ---------------------------------- Modules ------------------------------
 # -------------------------------------------------------------------------
 
-# box::use(
-#   app/view[],
-#   app/logic[]
-# )
+box::use(
+  app/view[mbta_map, route_bar_chart, stop_bar_chart],
+  # app/logic[]
+)
 
 # -------------------------------------------------------------------------
 # ----------------------------- Helper Functions --------------------------
@@ -65,7 +66,7 @@ ferry_stops <- st_transform(ferry_stops, crs = 4326)
 # -------------------------------------------------------------------------
 # ------------------------------ UI Function ------------------------------
 # -------------------------------------------------------------------------
-
+#' @export
 ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -73,20 +74,17 @@ ui <- function(id) {
       # -------------------------------
       # ----- Layout for App Body -----
       # -------------------------------
-      tags$div(class = "body-content-grid", 
-               card(class = "map-card",
-                 tags$div(class = "mbta-map",
-                          "MBTA Map")
-                 ),
-               card(class = "plot-card",
-                 tags$div(class = "mbta-route-bar-chart",
-                          "Route Bar Chart")
-                 ),
-               card(class = "plot-card",
-                 tags$div(class = "mbta-stop-bar-chart",
-                          "Stop Bar Chart")
-                 )
-               )
+      tags$main(class = "dashboard",
+                tags$section(class = "dashboard-panels",
+                             tags$div(class = "panel panel-chart chart-map",
+                                      mbta_map$init_ui(id = ns("mbta_map"))),
+                             tags$div(class = "panel panel-chart chart-bar-route",
+                                      route_bar_chart$init_ui(id = ns("route_bar_chart"))),
+                             tags$div(class = "panel panel-chart chart-bar-stop",
+                                      stop_bar_chart$init_ui(id = ns("stop_bar_chart"))
+                                      )
+                             )
+                )
     )
   )
 }
@@ -94,7 +92,7 @@ ui <- function(id) {
 # -------------------------------------------------------------------------
 # ----------------------------- Server Function ---------------------------
 # -------------------------------------------------------------------------
-
+#' @export
 server <- function(id) {
   moduleServer(
     id,
@@ -117,7 +115,9 @@ server <- function(id) {
       # ----------------------------------------------
       # ----- Initialize Module Server Functions -----
       # ----------------------------------------------
-      
+      mbta_map$init_server(id = "mbta_map", map_data = shape_list)
+      route_bar_chart$init_server(id = "route_bar_chart", route_data = route_data)
+      stop_bar_chart$init_server(id = "stop_bar_chart", stop_data = stop_data)
     }
   )
 }
