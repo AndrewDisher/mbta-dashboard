@@ -30,7 +30,7 @@ init_ui <- function(id) {
 # ----------------------------- Server Function ---------------------------
 # -------------------------------------------------------------------------
 #' @export
-init_server <- function(id, map_data) {
+init_server <- function(id, map_data, year) {
   moduleServer(
     id,
     function(input, output, session) {
@@ -38,7 +38,7 @@ init_server <- function(id, map_data) {
       # ----- Reactive Map Creation ------
       # ----------------------------------
       output$mbta_leaflet_map <- renderLeaflet({
-        mbta_map_logic$build_mbta_map(map_data = map_data(), year = "2019")
+        mbta_map_logic$build_mbta_map(map_data = map_data(), year = year())
       })
     }
   )
