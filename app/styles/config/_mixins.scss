@@ -1,0 +1,26 @@
+@mixin mediaFrom($breakpoint) {
+  @if $breakpoint {
+    @media only screen and (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin visuallyHidden {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,46 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/mixins';
+@use '../config/variables';
+@use '../config/rem';
+
+.dashboard-panels {
+  display: grid;
+  gap: rem.rem(20px);
+  grid-template-columns: 1fr;
+  width: 100%;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    grid-template-columns: 1fr;
+  }
+  
+  @include mixins.mediaFrom(variables.$breakLg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.panel {
+  border-radius: variables.$filletSmall;
+  box-shadow: variables.$boxShadowSmall;
+  width: 100%;
+}
+
+.panel-chart {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    grid-column: 1 / 2;
+  }
+  
+  @include mixins.mediaFrom(variables.$breakLg) {
+    grid-column: 1 / 2;
+  }
+  
+}
+
+
+

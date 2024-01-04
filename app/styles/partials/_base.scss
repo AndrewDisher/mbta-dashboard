@@ -1,0 +1,49 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/mixins';
+@use '../config/variables';
+@use '../config/rem';
+
+
+body {
+  @include mixins.flex-center;
+  background-color: variables.$ashLight;
+  flex-direction: column;
+  margin: 0 !important;
+  min-height: 100vh;
+  padding-top: rem.rem(70px);
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    padding: rem.rem(90px) rem.rem(30px) rem.rem(50px);
+  }
+}
+
+html {
+  box-sizing: border-box;
+  height: auto !important;
+}
+
+*, 
+*::before, 
+*::after {
+  box-sizing: inherit;
+}
+
+*:focus {
+  outline: none;
+}
+
+.dashboard {
+  background-color: #ffffff;
+  box-shadow: variables.$boxShadowLarge;
+  max-width: variables.$maxContentWidth;
+  padding: rem.rem(15px);
+  width: 100%;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    border-radius: variables.$filletLarge;
+    padding: rem.rem(25px);
+  }
+}

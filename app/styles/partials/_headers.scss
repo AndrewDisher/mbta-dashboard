@@ -1,0 +1,75 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/mixins';
+@use '../config/variables';
+@use '../config/rem';
+
+.main-header {
+  @include mixins.flex-center;
+  left: 0;
+  padding: rem.rem(20px);
+  padding-bottom: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    padding: rem.rem(20px);
+    padding-bottom: 0;
+  }
+  
+  @include mixins.mediaFrom(variables.$breakXl) {
+    justify-content: start;
+  }
+}
+
+.main-title {
+  @include mixins.visuallyHidden;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: rem.rem(10px) 0;
+  
+  @include mixins.mediaFrom(variables.$breakMd) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  @include mixins.mediaFrom(breakXl) {
+    flex-wrap: nowrap;
+  }
+  
+  .dashboard-heading {
+    align-items: center;
+    background: none;
+    color: variables.$ash;
+    display: flex;
+    flex-shrink: 0;
+    font-size: rem.rem(20px);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: rem.rem(20px);
+    
+    @include mixins.mediaFrom(variables.$breakSm) {
+      margin-bottom: 0;
+    }
+    
+    @include mixins.mediaFrom(variables.$breakMd) {
+      margin-right: rem.rem(30px);
+    }
+    
+    .dashboard-version {
+      margin: 0 0 rem.rem(25px) rem.rem(15px);
+    }
+    
+    .dashboard-title {
+      @extend .dashboard-version;
+      color: variables.$navy;
+    }
+  }
+}

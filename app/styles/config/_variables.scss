@@ -1,0 +1,40 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/rem';
+
+// Breakpoints
+$breakXs: 0px;
+$breakSm: 480px;
+$breakMd: 720px;
+$breakLg: 960px;
+$breakXl: 1200px;
+
+// Grid
+$maxContentWidth: rem.rem(1600px);
+$gutter: rem.rem(24px);
+
+// Colors
+$black: rgba(0, 0, 0, .2);
+$dark_black: rgba(0, 0, 0, .6);
+$highlight: #007aff;
+$ashLight: #e3e7e9;
+$ash: #B3B8BA;
+$navy: #15354A;
+$grayDark: #525252;
+
+$colorFont: $grayDark;
+
+// Box Shadow
+$boxShadowSmall: 0 2px 8px -2px transparentize($grayDark, 0.6);
+$boxShadowLarge: 0 4px 25px 0 transparentize($grayDark, 0.9);
+
+// Rounded Small Corners
+$filletSmall: 6px;
+$filletLarge: 10px;
+
+// Spacings
+$spacingSm: rem.rem(8px);
+$spacingMd: rem.rem(20px);
+$spacingLg: rem.rem(32px);

@@ -1,0 +1,18 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/variables';
+
+///// ------------------------------ ///
+//// ----- Leaflet Map Styles ----- ////
+/// ------------------------------ /////
+
+div.custom-popup div.leaflet-popup-content-wrapper {
+  border: 3px solid variables.$highlight !important;
+  border-radius: .5em !important;
+}
+
+div.custom-popup div.leaflet-popup-tip {
+  background-color: variables.$highlight;
+}

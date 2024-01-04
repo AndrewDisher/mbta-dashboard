@@ -1,0 +1,41 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/mixins';
+@use '../config/variables';
+@use '../config/rem';
+
+.chart-bar-route {
+  
+  .chart-bar-route-container {
+    padding: rem.rem(35px) rem.rem(10px) rem.rem(0px);
+    
+    .app-route_bar_chart-route_bar_chart {
+      overflow: visible !important;
+    }
+  }
+  
+}
+
+.chart-bar-stop {
+  
+  .chart-bar-stop-container {
+    padding: rem.rem(35px) rem.rem(10px) rem.rem(0px);
+    
+    .app-stop_bar_chart-stop_bar_chart {
+      overflow: visible !important;
+    }
+    
+  }
+  
+}
+
+.chart-map {
+  @include mixins.mediaFrom(variables.$breakLg) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+  
+  min-height: 500px;
+}
