@@ -4,7 +4,9 @@
 
 box::use(
   sf[`st_crs<-`, st_read, st_transform],
-  shiny[moduleServer, NS, reactive, tagList, tags],
+  # shiny[moduleServer, NS, reactive, tagList, tags],
+  shiny[bootstrapPage, moduleServer, NS, reactive, selectInput, tagList, tags],
+  # shiny.semantic[selectInput, semanticPage],
   shiny.semantic[semanticPage],
   utils[read.csv]
 )
@@ -70,11 +72,26 @@ ferry_stops <- st_transform(ferry_stops, crs = 4326)
 ui <- function(id) {
   ns <- NS(id)
   tagList(
-    semanticPage(
+    bootstrapPage(
       # -------------------------------
       # ----- Layout for App Body -----
       # -------------------------------
       tags$main(class = "dashboard",
+                # --- Dashboard Header ---
+                tags$header(class = "dashboard-header",
+                            tags$h2(class = "dashboard-heading",
+                                    tags$span(class = "dashboard-title",
+                                              "MBTA Ridership Dashboard")),
+                            tags$div(class = "dashboard-filters",
+                                     # --- Select Input for Year ---
+                                     selectInput(inputId = ns("selectYear"), 
+                                                 label = "Year",
+                                                 choices = c("2018", "2019"),
+                                                 selected = "2018",
+                                                 selectize = TRUE)
+                                     )),
+                
+                # --- Dashboard Panels ---
                 tags$section(class = "dashboard-panels",
                              tags$div(class = "panel panel-chart chart-map",
                                       mbta_map$init_ui(id = ns("mbta_map"))),
@@ -82,8 +99,7 @@ ui <- function(id) {
                                       route_bar_chart$init_ui(id = ns("route_bar_chart"))),
                              tags$div(class = "panel panel-chart chart-bar-stop",
                                       stop_bar_chart$init_ui(id = ns("stop_bar_chart"))
-                                      )
-                             )
+                                      ))
                 )
     )
   )
@@ -112,12 +128,18 @@ server <- function(id) {
       route_data <- reactive({ route_bar_chart_data })
       stop_data <- reactive({ stop_bar_chart_data })
       
+      # -------------------------
+      # ----- Select Inputs -----
+      # -------------------------
+      
+      selected_year <- reactive({ input$selectYear })
+      
       # ----------------------------------------------
       # ----- Initialize Module Server Functions -----
       # ----------------------------------------------
-      mbta_map$init_server(id = "mbta_map", map_data = shape_list)
-      route_bar_chart$init_server(id = "route_bar_chart", route_data = route_data)
-      stop_bar_chart$init_server(id = "stop_bar_chart", stop_data = stop_data)
+      mbta_map$init_server(id = "mbta_map", map_data = shape_list, year = selected_year)
+      route_bar_chart$init_server(id = "route_bar_chart", route_data = route_data, year = selected_year)
+      stop_bar_chart$init_server(id = "stop_bar_chart", stop_data = stop_data, year = selected_year)
     }
   )
 }
