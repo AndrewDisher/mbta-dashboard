@@ -23,6 +23,7 @@ $ashLight: #e3e7e9;
 $ash: #B3B8BA;
 $navy: #15354A;
 $grayDark: #525252;
+$greenDOT: #28bf46;
 
 $colorFont: $grayDark;
 
@@ -38,3 +39,15 @@ $filletLarge: 10px;
 $spacingSm: rem.rem(8px);
 $spacingMd: rem.rem(20px);
 $spacingLg: rem.rem(32px);
+
+// icons
+$dropdownIconSizeSmall: 10px;
+$dropdownIconSizeLarge: 15px;
+$dashboardLogoWidth: 80px;
+$mainLogoWidth: 180px;
+$infographicIconSize: 30px;
+
+// transitions
+$dropdownIconTransition: 0.2s;
+$dropdownTransition: 0.2s;
+$hoverTransition: 0.2s;

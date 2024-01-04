@@ -40,7 +40,7 @@
     align-items: flex-start;
   }
   
-  @include mixins.mediaFrom(breakXl) {
+  @include mixins.mediaFrom(variables.$breakXl) {
     flex-wrap: nowrap;
   }
   

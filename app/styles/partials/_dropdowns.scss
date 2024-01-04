@@ -1,0 +1,132 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/variables';
+@use '../config/mixins';
+@use '../config/rem';
+
+@mixin dropdown {
+
+  .selectize-control.single {
+    margin-bottom: 0;
+
+    .selectize-input {
+      align-items: center;
+      background: none;
+      display: flex;
+      justify-content: space-between;
+
+      // text in tiles headers
+      & > .item {
+        font-size: rem.rem(14px);
+        font-weight: 500;
+      }
+
+      &::after {
+        background-color: variables.$grayDark;
+        border: none;
+        content: "";
+        display: flex;
+        height: variables.$dropdownIconSizeSmall;
+        margin: 0;
+        mask-image: url(assets/icons/arrow.svg);
+        mask-size: 100%;
+        pointer-events: none;
+        position: static;
+        transition: transform variables.$dropdownIconTransition;
+        width: variables.$dropdownIconSizeSmall;
+        -webkit-mask-image: url(assets/icons/arrow.svg);
+        -webkit-mask-size: 100%;
+      }
+
+      // do not display blinking cursor when dropdown menu active
+      // override in-line styles
+      & > input {
+        display: none !important;
+      }
+    }
+
+    .selectize-input.input-active {
+      cursor: pointer;
+      box-shadow: none;
+
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+
+    .selectize-dropdown {
+      animation: popUp variables.$dropdownTransition cubic-bezier(.37,1.44,.82,1);
+      box-shadow: variables.$boxShadowSmall;
+      position: absolute;
+      transform-origin: center top;
+      z-index: 9999;
+    }
+  }
+}
+
+@mixin dropdownFilters {
+
+  .selectize-control.single {
+
+    .selectize-input:not(.input-active):hover {
+      border: 1px solid variables.$greenDOT;
+  
+      & > .item {
+        color: variables.$greenDOT;
+      }
+  
+      &::after {
+        background-color: variables.$greenDOT;
+      }
+    }
+  
+    .selectize-input.input-active {
+      border-color: variables.$highlight;
+      background-color: variables.$highlight;
+  
+      & > .item {
+        color: #ffffff;
+      }
+  
+      &::after {
+        background-color: #ffffff;
+      }
+    }
+  }
+}
+
+@mixin dropdownPanels {
+
+  .selectize-control.single {
+
+    & .selectize-input {
+      @include mixins.chart-header;
+      border: none;
+      min-height: 0;
+      transition: background-color variables.$hoverTransition;
+
+      &:hover {
+        background-color: variables.$highlight;
+      }
+
+      &::after {
+        background-color: #ffffff;
+        height: variables.$dropdownIconSizeLarge;
+        mask-image: url(assets/icons/dots.svg);
+        width: variables.$dropdownIconSizeLarge;
+        -webkit-mask-image: url(assets/icons/dots.svg);
+      }
+    }
+  
+    .selectize-input.input-active {
+      border-color: variables.$highlight;
+      background-color: variables.$highlight;
+
+      &::after {
+        transform: scaleX(0);
+      }
+    }
+  }
+}

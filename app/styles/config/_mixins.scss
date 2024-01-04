@@ -1,3 +1,10 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/variables';
+@use '../config/rem';
+
 @mixin mediaFrom($breakpoint) {
   @if $breakpoint {
     @media only screen and (min-width: $breakpoint) {
@@ -23,4 +30,19 @@
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+@mixin chart-header {
+  background-color: variables.$greenDOT;
+  border-radius: variables.$filletSmall variables.$filletSmall 0 0;
+  padding: rem.rem(7px) rem.rem(15px);
+
+  // text in tiles headers
+  & > .item {
+    color: #ffffff;
+    font-size: rem.rem(14px);
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+  }
 }

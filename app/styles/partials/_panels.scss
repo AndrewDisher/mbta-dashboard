@@ -5,6 +5,7 @@
 @use '../config/mixins';
 @use '../config/variables';
 @use '../config/rem';
+@use 'dropdowns';
 
 .dashboard-panels {
   display: grid;
@@ -38,6 +39,21 @@
   
   @include mixins.mediaFrom(variables.$breakLg) {
     grid-column: 1 / 2;
+  }
+  
+  .panel-header {
+    @include dropdowns.dropdown;
+    @include dropdowns.dropdownPanels;
+    position: absolute;
+    width: 100%;
+
+    label {
+      @include mixins.visuallyHidden;
+    }
+
+    .shiny-input-container {
+      width: 100%;
+    }
   }
   
 }
