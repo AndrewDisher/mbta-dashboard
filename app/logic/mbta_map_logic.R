@@ -29,7 +29,7 @@ format_bus_route_label <- function(avg_var, makePopup = FALSE) {
   # Create a leaflet on-hover label, or a popup?
   if (makePopup == TRUE) {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>Route: {map_data$bus_routes$route_id}</strong> <br>
+      "<strong style = 'font-size: 16px; color: #007aff;'>Bus: {map_data$bus_routes$route_id}</strong> <br>
       <strong style = 'font-size: 16px; color: #007aff;'>{map_data$bus_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$bus_routes$route_desc}</span> <br>
       <strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$bus_routes$",
@@ -37,7 +37,7 @@ format_bus_route_label <- function(avg_var, makePopup = FALSE) {
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>")
   } else {
     this.text <- paste0(
-      "<strong strong style = 'font-size: 16px; color: #007aff;'>Route: {map_data$bus_routes$route_id}</strong> <br>
+      "<strong strong style = 'font-size: 16px; color: #007aff;'>Bus: {map_data$bus_routes$route_id}</strong> <br>
       <strong strong style = 'font-size: 16px; color: #007aff;'>{map_data$bus_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$bus_routes$route_desc}</span> <br>
       <strong strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$bus_routes$",
@@ -225,7 +225,7 @@ build_mbta_map <- function(map_data, year) {
                    style = c(label_style,
                              "border-color" = constants$colors$highlight)),
                  popupOptions = popupOptions(className = "custom-popup"),
-                 layerId = ~paste(long_name, "(", route_desc, ")")) %>% 
+                 layerId = ~paste(long_name, "(", route_desc, " ", route_id, ")")) %>% 
     addCircleMarkers(data = map_data$bus_stops, group = "Toggle Bus Stops", radius = 3, opacity = 1, fillOpacity = 1, color = constants$colors$bus, fillColor = "black",
                      label = glue(format_bus_stop_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
                      popup = glue(format_bus_stop_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),

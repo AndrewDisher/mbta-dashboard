@@ -12,5 +12,5 @@ colors <- list(
   silver_line = "#7C878E",
   ferry = "#008EAA",
   highlight = "#007aff",
-  base_bar_color = "#5470c6"
+  base_bar_color = "#28bf46"
 )
