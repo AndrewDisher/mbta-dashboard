@@ -3,12 +3,11 @@
 # -------------------------------------------------------------------------
 
 box::use(
+  htmltools[tagAppendAttributes],
   sf[`st_crs<-`, st_read, st_transform],
-  # shiny[moduleServer, NS, reactive, tagList, tags],
   shiny[bootstrapPage, moduleServer, NS, reactive, selectInput, tagList, tags],
-  # shiny.semantic[selectInput, semanticPage],
-  shiny.semantic[semanticPage],
-  utils[read.csv]
+  utils[read.csv],
+  waiter[spin_folding_cube, useWaiter, waiterPreloader]
 )
 
 # -------------------------------------------------------------------------
@@ -16,17 +15,9 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/view[mbta_map, route_bar_chart, stop_bar_chart],
-  # app/logic[]
+  app/view[info_modal, mbta_map, route_bar_chart, stop_bar_chart],
+  app/logic[constants]
 )
-
-# -------------------------------------------------------------------------
-# ----------------------------- Helper Functions --------------------------
-# -------------------------------------------------------------------------
-
-card <- function(class, ...) {tags$div(class = class, ...)}
-
-custom_grid <- function(class, ...) {tags$div(class = class, ...)}
 
 # -------------------------------------------------------------------------
 # ------------------------------ Data Imports -----------------------------
@@ -73,6 +64,30 @@ ui <- function(id) {
   ns <- NS(id)
   tagList(
     bootstrapPage(
+      tags$link(href = "https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap",
+                rel = "stylesheet"),
+      # ---------------------------------------------
+      # ----- Waiter Loading Screen on App Load -----
+      # ---------------------------------------------
+      
+      useWaiter(),
+      waiterPreloader(
+        html = tagList(
+          spin_folding_cube(),
+          tags$div(class = "waiter-message", 
+                   tags$span(
+                     sample(c("Please wait while we load your data...",
+                              "We're loading the dashboard...",
+                              "Sit back and relax while we load your data...",
+                              "One moment while we load your dashboard..."),
+                            1)
+                   ))
+          )
+      ),
+      
+      
+      
+      
       # -------------------------------
       # ----- Layout for App Body -----
       # -------------------------------
@@ -80,8 +95,16 @@ ui <- function(id) {
                 # --- Dashboard Header ---
                 tags$header(class = "dashboard-header",
                             tags$h2(class = "dashboard-heading",
+                                    tags$a(href = "https://mbta-massdot.opendata.arcgis.com/",
+                                           class = "logo logo-dashboard",
+                                           target = "_blank",
+                                           constants$mbta_svg),
                                     tags$span(class = "dashboard-title",
-                                              "MBTA Ridership Dashboard")),
+                                              "MBTA Ridership Dashboard"),
+                                    # --- Info Modal Button ---
+                                    tags$span(class = "info-modal-container",
+                                              info_modal$init_ui(id = ns("info_modal")))
+                                    ),
                             tags$div(class = "dashboard-filters",
                                      # --- Select Input for Year ---
                                      selectInput(inputId = ns("selectYear"), 
@@ -89,7 +112,7 @@ ui <- function(id) {
                                                  choices = c("2018", "2019"),
                                                  selected = "2018",
                                                  selectize = TRUE)
-                                     )),
+                                     )), 
                 
                 # --- Dashboard Panels ---
                 tags$section(class = "dashboard-panels",
@@ -113,6 +136,7 @@ server <- function(id) {
   moduleServer(
     id,
     function(input, output, session) {
+      ns <- session$ns
       # ------------------------------
       # ----- Reactive Data Sets -----
       # ------------------------------
@@ -137,9 +161,11 @@ server <- function(id) {
       # ----------------------------------------------
       # ----- Initialize Module Server Functions -----
       # ----------------------------------------------
-      mbta_map$init_server(id = "mbta_map", map_data = shape_list, year = selected_year)
+      info_modal$init_server(id = "info_modal")
       route_bar_chart$init_server(id = "route_bar_chart", route_data = route_data, year = selected_year)
       stop_bar_chart$init_server(id = "stop_bar_chart", stop_data = stop_data, year = selected_year)
+      mbta_map$init_server(id = "mbta_map", map_data = shape_list, year = selected_year)
+      
     }
   )
 }

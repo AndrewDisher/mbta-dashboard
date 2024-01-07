@@ -40,8 +40,9 @@
     align-items: flex-start;
   }
   
-  @include mixins.mediaFrom(variables.$breakXl) {
+  @include mixins.mediaFrom(variables.$breakLg) {
     flex-wrap: nowrap;
+    align-items: center;
   }
   
   .dashboard-heading {
@@ -50,7 +51,7 @@
     color: variables.$ash;
     display: flex;
     flex-shrink: 0;
-    font-size: rem.rem(20px);
+    font-size: rem.rem(24px);
     font-weight: 500;
     line-height: 1;
     margin-bottom: rem.rem(20px);
@@ -63,13 +64,39 @@
       margin-right: rem.rem(30px);
     }
     
-    .dashboard-version {
-      margin: 0 0 rem.rem(25px) rem.rem(15px);
+    .dashboard-title {
+      margin-left: rem.rem(15px);
+      color: variables.$greenDOT;
     }
     
-    .dashboard-title {
-      @extend .dashboard-version;
-      color: variables.$navy;
+    .info-modal-container {
+      margin-left: rem.rem(20px);
+      
+      .btn, .btn-default{
+        padding: 0;
+        border-width: 0;
+        line-height: 0;
+        background-color: #ffffff !important;
+        
+        &:hover {
+          background-color: #ffffff;
+        }
+        
+        & > i {
+          font-size: rem.rem(30px);
+          color: variables.$ash;
+          
+          &:hover {
+            color: variables.$highlight;
+          }
+          
+        }
+      }
+      
+     & > button.btn:focus, button.btn:active:focus, button.btn.active:focus, button.btn.focus, button.btn:active.focus, button.btn.active.focus {
+        background-color: #ffffff !important;
+      }
+      
     }
   }
 }

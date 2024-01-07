@@ -3,10 +3,7 @@
 # -------------------------------------------------------------------------
 
 box::use(
-  dplyr[`%>%`],
-  leaflet[leafletOutput, renderLeaflet],
-  shiny[moduleServer, NS, selectInput, tagList, tags],
-  shinycssloaders[withSpinner]
+  shiny[actionButton, icon, modalButton, modalDialog, moduleServer, NS, showModal, tagList, observeEvent]
 )
 
 # -------------------------------------------------------------------------
@@ -14,39 +11,47 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/logic[constants, mbta_map_logic]
+  app/logic[info_modal_logic]
 )
 
 # -------------------------------------------------------------------------
 # ------------------------------ UI Function ------------------------------
 # -------------------------------------------------------------------------
+
 #' @export
 init_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    tags$div(
-      class = "panel-header static-header",
-      tags$div(class = "item",
-               "Map of the MBTA Transit System"),
-    ),
-    leafletOutput(outputId = ns("mbta_leaflet_map"), height = "100%") %>% 
-      withSpinner(type = 4, color = constants$colors$highlight)
+    
+    # ----- Application Info Modal Button -----
+    actionButton(inputId = ns("show"), 
+                 label = "", 
+                 icon = icon("circle-info"), 
+                 class = "header-help-icon")
   )
 }
 
 # -------------------------------------------------------------------------
 # ----------------------------- Server Function ---------------------------
 # -------------------------------------------------------------------------
+
 #' @export
-init_server <- function(id, map_data, year) {
+init_server <- function(id) {
   moduleServer(
     id,
     function(input, output, session) {
       # ----------------------------------
-      # ----- Reactive Map Creation ------
+      # ----- Application Info Modal -----
       # ----------------------------------
-      output$mbta_leaflet_map <- renderLeaflet({
-        mbta_map_logic$build_mbta_map(map_data = map_data(), year = year())
+      observeEvent(input$show, {
+        showModal(
+          modalDialog(
+            title = "MBTA Ridership Dashboard",
+            footer = modalButton("Dismiss"),
+            easyClose = TRUE,
+            info_modal_logic$build_modal()
+          )
+        )
       })
     }
   )

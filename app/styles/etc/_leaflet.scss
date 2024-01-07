@@ -16,3 +16,11 @@ div.custom-popup div.leaflet-popup-content-wrapper {
 div.custom-popup div.leaflet-popup-tip {
   background-color: variables.$highlight;
 }
+
+.leaflet-top {
+  padding-top: 30px;
+}
+
+.leaflet-container {
+  font: 12px/1.5 variables.$fontPrimary !important;
+}

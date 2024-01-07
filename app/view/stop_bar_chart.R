@@ -3,8 +3,10 @@
 # -------------------------------------------------------------------------
 
 box::use(
+  dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
-  shiny[moduleServer, NS, reactive, selectInput, tagList, tags]
+  shiny[moduleServer, NS, reactive, selectInput, tagList, tags],
+  shinycssloaders[withSpinner]
 )
 
 # -------------------------------------------------------------------------
@@ -12,7 +14,7 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/logic[stop_bar_chart_logic]
+  app/logic[constants, stop_bar_chart_logic]
 )
 
 # -------------------------------------------------------------------------
@@ -35,7 +37,8 @@ init_ui <- function(id) {
     ),
     tags$div(
       class = "chart-bar-stop-container",
-      echarts4rOutput(outputId = ns("stop_bar_chart"), height = "300px")
+      echarts4rOutput(outputId = ns("stop_bar_chart"), height = "300px") %>% 
+        withSpinner(type = 4,  color = constants$colors$highlight)
     )
   )
 }

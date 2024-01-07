@@ -25,22 +25,22 @@ box::use(
 # -----------------------------------------------
 # ---- Functions to Format Bus Map Elements -----
 # -----------------------------------------------
-format_bus_route_label <- function(avg_var, makePopup = FALSE) {
+format_bus_route_label <- function(avg_var, makePopup = FALSE, highlight_color) {
   # Create a leaflet on-hover label, or a popup?
   if (makePopup == TRUE) {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>Bus: {map_data$bus_routes$route_id}</strong> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{map_data$bus_routes$long_name}</strong> <br>
+      "<strong style = 'font-size: 16px; color: ", highlight_color, ";'>Bus: {map_data$bus_routes$route_id}</strong> <br>
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$bus_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$bus_routes$route_desc}</span> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$bus_routes$",
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(round(map_data$bus_routes$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>")
   } else {
     this.text <- paste0(
-      "<strong strong style = 'font-size: 16px; color: #007aff;'>Bus: {map_data$bus_routes$route_id}</strong> <br>
-      <strong strong style = 'font-size: 16px; color: #007aff;'>{map_data$bus_routes$long_name}</strong> <br>
+      "<strong strong style = 'font-size: 16px; color: ", highlight_color, ";'>Bus: {map_data$bus_routes$route_id}</strong> <br>
+      <strong strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$bus_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$bus_routes$route_desc}</span> <br>
-      <strong strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$bus_routes$",
+      <strong strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(round(map_data$bus_routes$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>")
   }
@@ -48,19 +48,19 @@ format_bus_route_label <- function(avg_var, makePopup = FALSE) {
   return(this.text)
 }
 
-format_bus_stop_label <- function(avg_var, makePopup = FALSE) {
+format_bus_stop_label <- function(avg_var, makePopup = FALSE, highlight_color) {
   # Create a leaflet on-hover label, or a popup?
   if (makePopup == TRUE) {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px;color: #007aff;'>{map_data$bus_stops$stop_name}</strong> <br>
-      <strong style = 'font-size: 16px;color: #007aff;'>{format(round(map_data$bus_stops$",
+      "<strong style = 'font-size: 16px;color: ", highlight_color, ";'>{map_data$bus_stops$stop_name}</strong> <br>
+      <strong style = 'font-size: 16px;color: ", highlight_color, ";'>{format(round(map_data$bus_stops$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
   } else {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>{map_data$bus_stops$stop_name}</strong> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$bus_stops$",
+      "<strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$bus_stops$stop_name}</strong> <br>
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(round(map_data$bus_stops$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
@@ -72,21 +72,21 @@ format_bus_stop_label <- function(avg_var, makePopup = FALSE) {
 # ---------------------------------------------------------
 # ---- Functions to Format Rapid Transit Map Elements -----
 # ---------------------------------------------------------
-format_rapid_route_label <- function(avg_var, makePopup = FALSE) {
+format_rapid_route_label <- function(avg_var, makePopup = FALSE, highlight_color) {
   # Create a leaflet on-hover label, or a popup?
   if (makePopup == TRUE) {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px;color: #007aff;'>{map_data$rapid_routes$long_name}</strong> <br>
+      "<strong style = 'font-size: 16px;color: ", highlight_color,  ";'>{map_data$rapid_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$rapid_routes$route_desc}</span> <br>
-      <strong style = 'font-size: 16px;color: #007aff;'>{format(map_data$rapid_routes$",
+      <strong style = 'font-size: 16px;color: ", highlight_color, ";'>{format(map_data$rapid_routes$",
       avg_var,
       ", big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
   } else {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>{map_data$rapid_routes$long_name}</strong> <br>
+      "<strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$rapid_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$rapid_routes$route_desc}</span> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{format(map_data$rapid_routes$",
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(map_data$rapid_routes$",
       avg_var,
       ", big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
@@ -95,19 +95,19 @@ format_rapid_route_label <- function(avg_var, makePopup = FALSE) {
   return(this.text)
 }
 
-format_rapid_stop_label <- function(avg_var, makePopup = FALSE) {
+format_rapid_stop_label <- function(avg_var, makePopup = FALSE, highlight_color) {
   # Create a leaflet on-hover label, or a popup?
   if (makePopup == TRUE) {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px;color: #007aff;'>{map_data$rapid_stops$stop_name}</strong> <br>
-      <strong style = 'font-size: 16px;color: #007aff;'>{format(map_data$rapid_stops$",
+      "<strong style = 'font-size: 16px;color: ", highlight_color, ";'>{map_data$rapid_stops$stop_name}</strong> <br>
+      <strong style = 'font-size: 16px;color: ", highlight_color, ";'>{format(map_data$rapid_stops$",
       avg_var,
       ", big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
   } else {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>{map_data$rapid_stops$stop_name}</strong> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{format(map_data$rapid_stops$",
+      "<strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$rapid_stops$stop_name}</strong> <br>
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(map_data$rapid_stops$",
       avg_var,
       ", big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
@@ -119,21 +119,21 @@ format_rapid_stop_label <- function(avg_var, makePopup = FALSE) {
 # -------------------------------------------------
 # ---- Functions to Format Ferry Map Elements -----
 # -------------------------------------------------
-format_ferry_route_label <- function(avg_var, makePopup = FALSE) {
+format_ferry_route_label <- function(avg_var, makePopup = FALSE, highlight_color) {
   # Create a leaflet on-hover label, or a popup?
   if (makePopup == TRUE) {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>{map_data$ferry_routes$long_name}</strong> <br>
+      "<strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$ferry_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$ferry_routes$route_desc}</span> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$ferry_routes$",
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(round(map_data$ferry_routes$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
   } else {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>{map_data$ferry_routes$long_name}</strong> <br>
+      "<strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$ferry_routes$long_name}</strong> <br>
       <span style = 'font-size: 14px;'>{map_data$ferry_routes$route_desc}</span> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$ferry_routes$",
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(round(map_data$ferry_routes$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
@@ -142,19 +142,19 @@ format_ferry_route_label <- function(avg_var, makePopup = FALSE) {
   return(this.text)
 }
 
-format_ferry_stop_label <- function(avg_var, makePopup = FALSE) {
+format_ferry_stop_label <- function(avg_var, makePopup = FALSE, highlight_color) {
   # Create a leaflet on-hover label, or a popup?
   if (makePopup == TRUE) {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px;color: #007aff;'>{map_data$ferry_stops$stop_name}</strong> <br>
-      <strong style = 'font-size: 16px;color: #007aff;'>{format(round(map_data$ferry_stops$",
+      "<strong style = 'font-size: 16px;color: ", highlight_color, ";'>{map_data$ferry_stops$stop_name}</strong> <br>
+      <strong style = 'font-size: 16px;color: ", highlight_color, ";'>{format(round(map_data$ferry_stops$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'> Average Weekday Boardings</strong>"
     )
   } else {
     this.text <- paste0(
-      "<strong style = 'font-size: 16px; color: #007aff;'>{map_data$ferry_stops$stop_name}</strong> <br>
-      <strong style = 'font-size: 16px; color: #007aff;'>{format(round(map_data$ferry_stops$",
+      "<strong style = 'font-size: 16px; color: ", highlight_color, ";'>{map_data$ferry_stops$stop_name}</strong> <br>
+      <strong style = 'font-size: 16px; color: ", highlight_color, ";'>{format(round(map_data$ferry_stops$",
       avg_var,
       "), big.mark = ',')}</strong> <strong style = 'font-size: 14px;'>Average Weekday Boardings</strong>"
     )
@@ -202,6 +202,9 @@ build_mbta_map <- function(map_data, year) {
   # Define which year's data to use (this will be passed to label formatting functions)
   avg_var <- paste0("avg_", year)
   
+  # Highlight Color for Label Formatters
+  highlight_color <- constants$colors$highlight
+  
   # --------------------------
   # --- Build the Base Map ---
   # --------------------------
@@ -209,8 +212,8 @@ build_mbta_map <- function(map_data, year) {
   mbta_map <- leaflet(options = leafletOptions(minZoom = 9, maxZoom = 20)) %>% 
     setView(zoom = 13, lat = 42.35544817958057, lng = -71.06299087861584) %>% 
     # --- Provider Tiles for Base Map ---
-    addProviderTiles(providers$CartoDB.VoyagerNoLabels, group = "CartoDBVoayager") %>%
-    addProviderTiles(providers$CartoDB.VoyagerOnlyLabels, group = 'CartoDBVoayager'
+    addProviderTiles(providers$CartoDB.VoyagerNoLabels, group = "CartoDBVoyager") %>%
+    addProviderTiles(providers$CartoDB.VoyagerOnlyLabels, group = 'CartoDBVoyager'
     ) %>% 
     addProviderTiles(providers$CartoDB.PositronNoLabels, group = "CartoDBPositron") %>% 
     addProviderTiles(providers$CartoDB.PositronOnlyLabels, group = "CartoDBPositron") %>% 
@@ -219,16 +222,16 @@ build_mbta_map <- function(map_data, year) {
     addPolylines(data = map_data$bus_routes, weight = line_weight, color = ~paste0("#", route_hex), opacity = 1, group = "Routes",
                  highlightOptions = highlightOptions(color = constants$colors$highlight, bringToFront = TRUE,
                                                      weight = 5, opacity = 1),
-                 label = glue(format_bus_route_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
-                 popup = glue(format_bus_route_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),
+                 label = glue(format_bus_route_label(avg_var = avg_var, makePopup = FALSE, highlight_color = highlight_color)) %>% lapply(HTML),
+                 popup = glue(format_bus_route_label(avg_var = avg_var, makePopup = TRUE, highlight_color = highlight_color)) %>% lapply(HTML),
                  labelOptions = labelOptions(
                    style = c(label_style,
                              "border-color" = constants$colors$highlight)),
                  popupOptions = popupOptions(className = "custom-popup"),
                  layerId = ~paste(long_name, "(", route_desc, " ", route_id, ")")) %>% 
     addCircleMarkers(data = map_data$bus_stops, group = "Toggle Bus Stops", radius = 3, opacity = 1, fillOpacity = 1, color = constants$colors$bus, fillColor = "black",
-                     label = glue(format_bus_stop_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
-                     popup = glue(format_bus_stop_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),
+                     label = glue(format_bus_stop_label(avg_var = avg_var, makePopup = FALSE, highlight_color = highlight_color)) %>% lapply(HTML),
+                     popup = glue(format_bus_stop_label(avg_var = avg_var, makePopup = TRUE, highlight_color = highlight_color)) %>% lapply(HTML),
                      labelOptions = labelOptions(
                        style = c(label_style, 
                                  "border-color" = constants$colors$highlight)), 
@@ -238,23 +241,23 @@ build_mbta_map <- function(map_data, year) {
     addPolylines(data = map_data$ferry_routes, weight = line_weight, color = constants$colors$ferry, dashArray = "2 6", opacity = 1, group = "Routes",
                  highlightOptions = highlightOptions(color = constants$colors$highlight, bringToFront = TRUE, 
                                                      weight = 5, opacity = 1),
-                 label = glue(format_ferry_route_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
-                 popup = glue(format_ferry_route_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),
+                 label = glue(format_ferry_route_label(avg_var = avg_var, makePopup = FALSE, highlight_color = highlight_color)) %>% lapply(HTML),
+                 popup = glue(format_ferry_route_label(avg_var = avg_var, makePopup = TRUE, highlight_color = highlight_color)) %>% lapply(HTML),
                  labelOptions = labelOptions(
                    style = c(label_style, 
                              "border-color" = constants$colors$highlight)), 
                  popupOptions = popupOptions(className = "custom-popup"),
                  layerId = ~paste0(long_name, " (Ferry Route)")) %>% 
     addCircleMarkers(data = map_data$ferry_stops, radius = 3, color = constants$colors$ferry, opacity = 1, fillOpacity = 1, group = "Stops & Stations",
-                     label = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
-                     popup = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),
+                     label = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = FALSE, highlight_color = highlight_color)) %>% lapply(HTML),
+                     popup = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = TRUE, highlight_color = highlight_color)) %>% lapply(HTML),
                      labelOptions = labelOptions(
                        style = c(label_style,
                                  "border-color" = constants$colors$highlight)),
                      popupOptions = popupOptions(className = "custom-popup")) %>% 
     addMarkers(data = map_data$ferry_stops, icon = mbta_icons$tiny_icon, group = "Markers",
-               label = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
-               popup = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),
+               label = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = FALSE, highlight_color = highlight_color)) %>% lapply(HTML),
+               popup = glue(format_ferry_stop_label(avg_var = avg_var, makePopup = TRUE, highlight_color = highlight_color)) %>% lapply(HTML),
                labelOptions = labelOptions(
                  style = c(label_style,
                            "border-color" = constants$colors$highlight)),
@@ -265,24 +268,24 @@ build_mbta_map <- function(map_data, year) {
     addPolylines(data = map_data$rapid_routes, weight = line_weight, color = ~paste0("#", route_col), opacity = 1, group = "Routes",
                  highlightOptions = highlightOptions(color = constants$colors$highlight, bringToFront = TRUE,
                                                      weight = 5, opacity = 1),
-                 label = glue(format_rapid_route_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
-                 popup = glue(format_rapid_route_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),
+                 label = glue(format_rapid_route_label(avg_var = avg_var, makePopup = FALSE, highlight_color = highlight_color)) %>% lapply(HTML),
+                 popup = glue(format_rapid_route_label(avg_var = avg_var, makePopup = TRUE, highlight_color = highlight_color)) %>% lapply(HTML),
                  labelOptions = labelOptions(
                    style = c(label_style,
                              "border-color" = constants$colors$highlight)),
                  layerId = ~paste0(long_name, " (Rapid Transport Route)"),
                  popupOptions = popupOptions(className = "custom-popup")) %>% 
     addMarkers(data = map_data$rapid_stops, icon = mbta_icons$rapidT, group = "Markers",
-               label = glue(format_rapid_stop_label(avg_var = avg_var, makePopup = FALSE)) %>% lapply(HTML),
-               popup = glue(format_rapid_stop_label(avg_var = avg_var, makePopup = TRUE)) %>% lapply(HTML),
+               label = glue(format_rapid_stop_label(avg_var = avg_var, makePopup = FALSE, highlight_color = highlight_color)) %>% lapply(HTML),
+               popup = glue(format_rapid_stop_label(avg_var = avg_var, makePopup = TRUE, highlight_color = highlight_color)) %>% lapply(HTML),
                labelOptions = labelOptions(
                  style = c(label_style,
                            "border-color" = constants$colors$highlight)),
-               layerId = ~paste0(stop_name, " (Rapid Transport Station)"),
+               layerId = ~paste0(stop_name, " (Rapid Transit Station)"),
                popupOptions = popupOptions(className = "custom-popup")) %>% 
     
     # --- Legend & Other Stuff ---
-    addLayersControl(baseGroups = c("CartoDBVoayager", "CartoDBPositron"),
+    addLayersControl(baseGroups = c("CartoDBVoyager", "CartoDBPositron"),
                      overlayGroups = c("Toggle Bus Stops"),
                      options = layersControlOptions(collapsed = FALSE)) %>% 
     addLegendFactor(pal = routePalette, shape = "line", 

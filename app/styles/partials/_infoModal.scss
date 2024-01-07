@@ -1,0 +1,150 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/variables';
+@use '../config/mixins';
+@use '../config/rem';
+
+// ------------------------------------------- //
+// --- General Styles for Modal Components --- //
+// ------------------------------------------- //
+.modal-title {
+  text-align: center;
+  font-size: rem.rem(20px);
+  color: variables.$greenDOT;
+}
+
+.modal-description-header{
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0 0 .7em .4em;
+  color: variables.$greenDOT;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    margin: 0 0 .7em 2.5em;
+  }
+}
+
+.author-header {
+  @extend .modal-description-header;
+  margin: 1em 0 .7em .7em;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    margin: 1em 0 .7em 2.5em;
+  }
+}
+
+.modal-paragraph{
+  font-size: 1em;
+  margin: 0 .5em 0 .5em;
+  color: variables.$gray;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    margin: 0 3em 0 3em;
+  }
+}
+
+.author-description {
+  border-radius: 1em;
+  border: 1px solid variables.$black;
+  background-color: variables.$modal_background;
+  margin: 0 .5em 0 .5em;
+  padding: .5em 1em;
+  align-items: center;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    margin: 0 3em 0 3em;
+  }
+  
+  .author-span {
+    display: inline-block;
+    background: variables.$greenDOT;
+    color: #ffffff;
+    border-radius: 1em;
+    border: 1px solid variables.$modal_background;
+    padding-right: 10px;
+    padding-left: 10px;
+    
+    &:hover {
+      background: variables.$highlight;
+      color: #ffffff;
+      border-color: variables.$modal_background;
+    }
+  }
+}
+
+.link-span {
+  color: variables.$greenDOT;
+  text-decoration: none;
+  border-bottom: 1px solid variables.$greenDOT;
+  
+  &:hover {
+    color: variables.$highlight;
+    text-decoration: none;
+    border-bottom: 1px solid variables.$highlight;
+  }
+}
+
+// ------------------------------ //
+// --- Main Info Modal Styles --- //
+// ------------------------------ //
+
+.technology-grid{
+  margin: 0 .5em 0 .5em;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 100%;
+  
+  @include mixins.mediaFrom(variables.$breakSm) {
+    grid-template-columns: auto 1fr;
+    column-gap: .2em;
+    margin: 0 3em 0 3em;
+  }
+}
+
+.left-description{
+  text-align: left;
+}
+
+.right-tech-used{
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem.rem(7px) rem.rem(7px);
+  
+  .tech-span{
+    display: inline-block;
+    background: variables.$greenDOT;
+    color: #ffffff;
+    border-radius: 1em;
+    border: 1px solid variables.$black;
+    padding-right: 10px;
+    padding-left: 10px;
+  
+    &:hover {
+      background: variables.$highlight;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+  }
+  
+}
+
+// --- Modal Dismiss Button --- //
+.modal-footer {
+  
+  & > button.btn.btn-default {
+    background-color: variables.$greenDOT;
+    color: #ffffff;
+    border-color: variables.$greenDOT;
+    
+    &:hover {
+      background-color: variables.$highlight;
+      border-color: #ffffff;
+    }
+  }
+  
+}
+

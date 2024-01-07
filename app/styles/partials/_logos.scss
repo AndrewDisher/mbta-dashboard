@@ -1,0 +1,37 @@
+///// ------------------- ///
+//// ----- Imports ----- ////
+/// ------------------- /////
+
+@use '../config/mixins';
+@use '../config/variables';
+
+.logo {
+  color: variables.$greenDOT;
+  fill: variables.$greenDOT;
+  text-decoration: none;
+  transition: color variables.$hoverTransition, fill variables.$hoverTransition;
+
+  &:hover {
+    color: variables.$highlight;
+    fill: variables.$highlight;
+  }
+}
+
+.logo-dashboard {
+  width: variables.$dashboardLogoWidth;
+}
+
+/*.logo-main {
+  @include mixins.flex-center;
+  fill: variables.$gray;
+  width: variables.$mainLogoWidth * 2/3;
+
+  @include mixins.mediaFrom(variables.$breakSm) {
+    fill: variables.$ash;
+    width: variables.$mainLogoWidth;
+  }
+}*/
+
+.logo-svg {
+  width: 100%;
+}

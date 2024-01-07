@@ -25,7 +25,7 @@
 
       &::after {
         background-color: variables.$grayDark;
-        border: none;
+        border: none !important;
         content: "";
         display: flex;
         height: variables.$dropdownIconSizeSmall;
@@ -71,29 +71,45 @@
   .selectize-control.single {
 
     .selectize-input:not(.input-active):hover {
-      border: 1px solid variables.$greenDOT;
+      border: 1px solid variables.$highlight;
   
       & > .item {
-        color: variables.$greenDOT;
+        color: variables.$highlight;
       }
   
       &::after {
-        background-color: variables.$greenDOT;
+        background-color: variables.$highlight;
       }
     }
   
     .selectize-input.input-active {
-      border-color: variables.$highlight;
-      background-color: variables.$highlight;
+      border-color: variables.$greenDOT;
+      background-color: variables.$greenDOT;
   
       & > .item {
         color: #ffffff;
       }
   
       &::after {
-        background-color: #ffffff;
+        background-color: #ffffff;  
       }
     }
+    
+    .selectize-input.focus {
+      border-color: variables.$greenDOT;
+      box-shadow: none;
+    }
+    
+    .selectize-dropdown {
+      
+      .selectize-dropdown-content {
+        
+        & > .selected {
+          background-color: variables.$highlight;
+        }
+      }
+    }
+    
   }
 }
 
@@ -126,6 +142,16 @@
 
       &::after {
         transform: scaleX(0);
+      }
+    }
+    
+    .selectize-dropdown {
+      
+      .selectize-dropdown-content {
+        
+        & > .selected {
+          background-color: variables.$highlight;
+        }
       }
     }
   }

@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  font-family: variables.$fontPrimary !important;
   color: variables.$colorFont;
 }
 
@@ -24,4 +25,8 @@ p {
   padding: 0;
   vertical-align: baseline;
   line-height: 1;
+}
+
+a:hover {
+  text-decoration: none;
 }

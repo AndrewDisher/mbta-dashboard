@@ -9,6 +9,7 @@
 
 .dashboard-filters {
   width: 100%;
+  align-items: center;
 
   @include mixins.mediaFrom(variables.$breakMd) {
     max-width: 250px;
@@ -17,6 +18,7 @@
   .form-group {
     @include dropdowns.dropdown;
     @include dropdowns.dropdownFilters;
+    margin-bottom: 0 !important;
     display: flex;
     flex-direction: column;
     flex-grow: 1;

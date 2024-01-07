@@ -5,7 +5,7 @@ export function labelFormat(params) {
 }
 
 export function barTooltip(params) {
-  var tooltip = "<strong style = 'color: #007aff;'>" + `${params.value[1]}` + "</strong>" + "<br>" +
-  "<strong style = 'color: #007aff;' >" + `${params.name}%` + "</strong>" + " of all Average Weekday Boardings";
+  var tooltip = "<strong style = 'color: #28bf46;'>" + `${params.value[1]}` + "</strong>" + "<br>" +
+  "<strong style = 'color: #28bf46;' >" + `${params.name}%` + "</strong>" + " of all Average Weekday Boardings";
   return (tooltip);
 }

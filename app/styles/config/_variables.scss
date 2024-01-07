@@ -15,15 +15,20 @@ $breakXl: 1200px;
 $maxContentWidth: rem.rem(1600px);
 $gutter: rem.rem(24px);
 
+// fonts
+$fontPrimary: "Maven Pro", sans-serif;
+
 // Colors
 $black: rgba(0, 0, 0, .2);
 $dark_black: rgba(0, 0, 0, .6);
-$highlight: #007aff;
+$highlight: #28bf46;
 $ashLight: #e3e7e9;
 $ash: #B3B8BA;
-$navy: #15354A;
+$gray: #6E757B;
 $grayDark: #525252;
-$greenDOT: #28bf46;
+//$greenDOT: #28bf46;
+$greenDOT: #1a7e2e;
+$modal_background: #b2ccb7;
 
 $colorFont: $grayDark;
 
@@ -43,7 +48,7 @@ $spacingLg: rem.rem(32px);
 // icons
 $dropdownIconSizeSmall: 10px;
 $dropdownIconSizeLarge: 15px;
-$dashboardLogoWidth: 80px;
+$dashboardLogoWidth: 70px;
 $mainLogoWidth: 180px;
 $infographicIconSize: 30px;
 

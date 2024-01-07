@@ -56,6 +56,11 @@
     }
   }
   
+  .static-header {
+    @include mixins.chart-header;
+    z-index: 10;
+    padding: rem.rem(8px) rem.rem(15px) rem.rem(7px);
+  }
 }
 
 

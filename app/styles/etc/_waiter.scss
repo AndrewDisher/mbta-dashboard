@@ -1,0 +1,20 @@
+///// --------------------------------------------- ///
+//// ----- Styling for Waiter Loading Screen ----- ////
+/// --------------------------------------------- /////
+
+@use '../config/variables';
+@use '../config/rem';
+
+.waiter-fullscreen {
+  width: 100% !important;
+  z-index: 110000;
+}
+
+.waiter-message {
+  margin-top: rem.rem(50px);
+  color: black;
+  font-size: 20px;
+  border-radius: rem.rem(20px);
+  background-color: #ffffff;
+  padding: rem.rem(15px);
+}

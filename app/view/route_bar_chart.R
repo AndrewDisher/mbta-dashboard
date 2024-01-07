@@ -3,8 +3,10 @@
 # -------------------------------------------------------------------------
 
 box::use(
+  dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
-  shiny[moduleServer, NS, reactive, selectInput, tagList, tags]
+  shiny[moduleServer, NS, reactive, selectInput, tagList, tags],
+  shinycssloaders[withSpinner]
 )
 
 # -------------------------------------------------------------------------
@@ -12,7 +14,7 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/logic[route_bar_chart_logic]
+  app/logic[constants, route_bar_chart_logic]
 )
 
 # -------------------------------------------------------------------------
@@ -27,15 +29,15 @@ init_ui <- function(id) {
       selectInput(
         ns("sort"), 
         "Sort by ascending or descending?",
-        choices = c("Most Popular Stops" = "Top 10", "Least Popular Stops" = "Bottom 10"),
+        choices = c("Most Popular Routes" = "Top 10", "Least Popular Routes" = "Bottom 10"),
         width = NULL,
         selectize = TRUE,
         selected = "Top 10"
       )
     ),
-    tags$div(
-      class = "chart-bar-route-container",
-      echarts4rOutput(outputId = ns("route_bar_chart"), height = "300px", width = "100%")
+    tags$div(class = "chart-bar-route-container",
+      echarts4rOutput(outputId = ns("route_bar_chart"), height = "300px", width = "100%") %>% 
+        withSpinner(type = 4,  color = constants$colors$highlight)
       )
   )
 }
