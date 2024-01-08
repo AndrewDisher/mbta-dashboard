@@ -44,7 +44,7 @@ in the case of deploying to, for example, an AWS EC2 instance. This is my typica
 this time because I wanted to explore other options. 
 
 ## Effort In Build the Application
-The total amount of time invested in creting this application was about 7 days, much of which was spent finding the data, examining variable definitions, and cleaning the data. 
+The total amount of time invested in creating this application was about 7 days, much of which was spent finding the data, examining variable definitions, and cleaning the data. 
 
 ## Special Mentions
 Thank you to appsilon for creting the `rhino` R/Shiny framework, which was used to create the application. Additionally, thank your for created the Appsilon template
