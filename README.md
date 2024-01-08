@@ -47,5 +47,5 @@ this time because I wanted to explore other options.
 The total amount of time invested in creating this application was about 7 days, much of which was spent finding the data, examining variable definitions, and cleaning the data. 
 
 ## Special Mentions
-Thank you to appsilon for creting the `rhino` R/Shiny framework, which was used to create the application. Additionally, thank your for created the Appsilon template
+Thank you to Appsilon for creting the `rhino` R/Shiny framework, which was used to create the application. Additionally, thank your for creating the Appsilon template
 bundle, which greatly inspired the design choices used to create the app.  
