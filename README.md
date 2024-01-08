@@ -39,6 +39,13 @@ The result of this action can be seen in the image below, where all 4 sections f
 To ensure that the dashboard is stable and easily re-deployed given any number of feature or styling changes, its package dependencies were tracked
 using the `renv` R package. This creates a json-like file, titled *renv.lock*, which stores information about each dependency, its version, and subsequent dependencies. 
 
+## Effort In Build the Application
+The total amount of time invested in creting this application was about 7 days, much of which was spent finding the data, examining variable definitions, and cleaning the data. 
+
+## Special Mentions
+Thank you to appsilon for creting the `rhino` R/Shiny framework, which was used to create the application. Additionally, thank your for created the Appsilon template
+bundle, which greatly inspired the design choices used to create the app.  
+
 Shinyapps.io ensured base linux dependencies were managed before deploying to a server, however a dockerfile could easily be used to track this information as well
 in the case of deploying to, for example, an AWS EC2 instance. This is my typical approach, since I typically deploy my apps to EC2 instances. Shinyapps.io was chosen 
 this time because I wanted to explore other options. 
