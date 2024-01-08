@@ -21,6 +21,10 @@ were separated as per the MBTA file convention. These custom files differ from t
 had a unique id, and each route comprised of each of its respective sections to form a continuous line on a map. 
 
 An exception to this is the case of the MBTA's Green Line, which is actually comprised of the B, C, D, and E routes of the Green Line. These are in fact separate routes, however, data
-from the Ridership link above generalized ridership to the sum of its parts (B, C, D, and E). Therefore, the choice was made to connect each of these subroutes to form one, continuous line
+from the Ridership link above generalized ridership to the sum of its parts (B, C, D, and E). Therefore, the choice was made to connect each of these subroutes to form one, continuous line. 
+
+The result of this action can be seen in the image below, where all 4 sections form a single Multiline (to use Well-Known-Text terminology).
+
+![](readme_images/Green_Line_MBTA.png)
 
 This repository contains the R code, SASS and CSS files, javascript files, and data necessary to create the interactive dashboard. 
