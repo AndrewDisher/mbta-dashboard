@@ -1,6 +1,14 @@
 # MBTA Ridership Dashboard
 This is an interactive R/Shiny dashboard that displays an interactive ridership summary of the Massachusetts Bay Transportation Authority transit system in Boston, Massachusetts. 
 
+## Deployment
+The application is deployed using [shinyapps.io](https://www.shinyapps.io/), and can be viewed [here](https://1nfmn7-andrew-disher.shinyapps.io/mbta-dashboard/).
+
+## R/Shiny
+The application was built using the R web application development package called [Shiny](https://www.rstudio.com/products/shiny/). Shiny is an open source
+R package developed by [Posit](https://posit.co/products/open-source/rstudio/) with the aim of helping data scientists and analysts communicate statistical findings
+by creating complex statistical web applications. 
+
 ## Ridership Data
 The dashboard uses publicly available data, found on the MBTA open data portal, [Blue Book](https://mbta-massdot.opendata.arcgis.com/). 
 Average weekday ridership data for bus routes, rapid transit routes, and ferry routes, as well as all of the stops along these routes are available for 
@@ -23,8 +31,14 @@ had a unique id, and each route comprised of each of its respective sections to 
 An exception to this is the case of the MBTA's Green Line, which is actually comprised of the B, C, D, and E routes of the Green Line. These are in fact separate routes, however, data
 from the Ridership link above generalized ridership to the sum of its parts (B, C, D, and E). Therefore, the choice was made to connect each of these subroutes to form one, continuous line. 
 
-The result of this action can be seen in the image below, where all 4 sections form a single Multiline (to use Well-Known-Text terminology).
+The result of this action can be seen in the image below, where all 4 sections form a single Multilinestring (to use [Well-Known-Text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) terminology).
 
 ![](readme_images/Green_Line_MBTA.png)
 
-This repository contains the R code, SASS and CSS files, javascript files, and data necessary to create the interactive dashboard. 
+## Dependency Management
+To ensure that the dashboard is stable and easily re-deployed given any number of feature or styling changes, its package dependencies were tracked
+using the `renv` R package. This creates a json-like file, titled *renv.lock*, which stores information about each dependency, its version, and subsequent dependencies. 
+
+Shinyapps.io ensured base linux dependencies were managed before deploying to a server, however a dockerfile could easily be used to track this information as well
+in the case of deploying to, for example, an AWS EC2 instance. This is my typical approach, since I typically deploy my apps to EC2 instances. Shinyapps.io was chosen 
+this time because I wanted to explore other options. 
