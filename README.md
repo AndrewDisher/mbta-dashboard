@@ -43,7 +43,7 @@ Shinyapps.io ensured base linux dependencies were managed before deploying to a 
 in the case of deploying to, for example, an AWS EC2 instance. This is my typical approach, since I typically deploy my apps to EC2 instances. Shinyapps.io was chosen 
 this time because I wanted to explore other options. 
 
-## Effort In Build the Application
+## Effort In Building the Application
 The total amount of time invested in creating this application was about 7 days, much of which was spent finding the data, examining variable definitions, and cleaning the data. 
 
 ## Special Mentions
